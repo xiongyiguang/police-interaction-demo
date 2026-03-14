@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>接访工作台 - 会话处理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f8fafc",
+                        "ai-panel-bg": "#f0f7ff",
+                        "message-citizen": "#f1f5f9",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: "Public Sans", sans-serif;
+            @apply bg-background-light text-slate-900;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .message-shadow {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 px-6 py-3 bg-white sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">policy</span>
+</div>
+<h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight">所长直通车</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-slate-100 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-slate-900 focus:outline-0 focus:ring-0 border-none bg-slate-100 h-full placeholder:text-slate-400 px-4 pl-2 text-sm font-normal" placeholder="搜索案例或居民..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">接访工作台</a>
+<a class="text-slate-600 text-sm font-semibold hover:text-primary transition-colors" href="#">工单中心</a>
+<a class="text-slate-600 text-sm font-semibold hover:text-primary transition-colors" href="#">知识库管理</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+<div class="text-right">
+<p class="text-sm font-bold">张警官</p>
+<p class="text-[11px] text-slate-500 font-medium">派出所助手</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiN9hR0wQweOzyhbhb3GFqOkEp5j-WHrBRp7FVrIBGHArVPTsyJakiDzJSdfXm73mA284_lNAqqAgFnFP3sxgN93Dl8IoXGBI-dvBe0tDVJH3GfcQY2jsAu4ibxqtWlcX6vWyFbv4pNl81jUf79-agUxRA5_wBEdALe1BxCbcU7qeV2_YvSbh2g9Wu1p-NMx4EnlNbEg-iovoxm89AyF22TOcV1vKgUf8bJiqHgmdBtzmeHfSURqKM7NbLCbWjfTbrtFYxXCcWszrk");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<aside class="w-20 lg:w-64 border-r border-slate-200 bg-white flex flex-col py-4">
+<div class="px-4 mb-6">
+<p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest px-2">主菜单</p>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-bold text-sm hidden lg:block">接访工作台</span>
+<span class="ml-auto bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full hidden lg:block font-bold">3</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-bold text-sm hidden lg:block">工单中心</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-bold text-sm hidden lg:block">治理看板</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-bold text-sm hidden lg:block">系统设置</span>
+</a>
+</nav>
+<div class="mt-auto px-4">
+<div class="p-3 bg-slate-50 rounded-xl hidden lg:block border border-slate-100">
+<p class="text-xs font-bold text-slate-500">系统状态</p>
+<div class="flex items-center gap-2 mt-2">
+<div class="size-2 rounded-full bg-emerald-500"></div>
+<span class="text-[11px] font-bold text-slate-700">公安专网已连接</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col bg-white overflow-hidden relative">
+<div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 border-2 border-slate-100" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDA9FTidkgkcdygAemWCVNQIzAo22dzwRRWn6bvgBfdCv_1YhzPe4JjDlZxYcJx2pSjtBEBOZAdpmhqmOJr6LdOL6ruHZWKZSQ8wOq5heDYzsfUy43bl9fjOlbnc4ZxKByKWYdQp6hUN8rR7b60NKkviIcfD2k2WKFnPDNuuR_q77mDcdkihL1Z62Y7p8JzGKopx5wj6UWufUzno5MNqCDI__PjU-yJtbBGr0WSC_qUwVJ8IXq_LqGkGZ8cUV5U8TCR4OfFhEVAccSM");'></div>
+<div class="absolute bottom-0 right-0 size-3.5 bg-emerald-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<h3 class="font-bold text-slate-900">居民 李先生 (ID: 8821)</h3>
+<p class="text-xs text-slate-500 font-medium">噪音投诉 • 活跃 12 分钟</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        历史记录
+                    </button>
+<button class="px-4 py-2 text-xs font-bold rounded-lg bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors flex items-center gap-2 border border-amber-200/50">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+                        标记优先级
+                    </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-6">
+<div class="flex justify-center">
+<span class="px-3 py-1 bg-slate-100 text-[11px] font-bold rounded-full text-slate-500 uppercase tracking-wider">今日</span>
+</div>
+<div class="flex items-start gap-3 max-w-[85%]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 mt-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjqmx3Tbg5tDSf61bsjNV2SoQr6s9TlOTtEEBmwW1WeVdyFQpn9o6PbgK3W5IisjBLqNHTX5uJqlmXPoe-8Gp7_SxMwNvvzCcUNL7cFX00d59NZCKCyeVg7rCoPYBsLTYqjl0uiFVfNXWA_pYOQmTAtHyXR8tbTTiX8EkTehRU_ZEszsdkLlRrQ0bfpXKMoSVOjXEgTlELLRJ0bXONtmxVsC3Xg66AvkjWVfuUJ_tyyIxczQvfzrpgvYH9clchLNHmEhYbUgnCgC3h");'></div>
+<div class="flex flex-col gap-1.5 items-start">
+<div class="flex items-baseline gap-2">
+<p class="text-xs font-bold text-slate-700">居民 李先生</p>
+<p class="text-[10px] text-slate-400">14:20</p>
+</div>
+<div class="text-sm font-medium leading-relaxed rounded-2xl rounded-tl-none px-4 py-3 bg-slate-100 text-slate-900 border border-slate-200 message-shadow">
+                            您好，我想举报枫叶街15号建筑工地噪音扰民，已经持续响了3个多小时了。
+                        </div>
+</div>
+</div>
+<div class="flex items-start gap-3 max-w-[85%] ml-auto justify-end">
+<div class="flex flex-col gap-1.5 items-end">
+<div class="flex items-baseline gap-2">
+<p class="text-[10px] text-slate-400">14:22</p>
+<p class="text-xs font-bold text-primary">张警官</p>
+</div>
+<div class="text-sm font-medium leading-relaxed rounded-2xl rounded-tr-none px-4 py-3 bg-primary text-white shadow-md shadow-primary/10">
+                            收到，李先生。我们正在记录您的投诉。请问这是居民楼建设项目还是商业体施工？
+                        </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 border-2 border-primary/20 mt-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCihAeMFskKhMFN83cYbiwwKkqzz3eDaAL4oSo-wjeo3wLgHGXkmHAa_641IE9BXN3n5qFA0Tx1wYd34mvSfW8B_eTYjrfOwKHNuWhaCo5dtDy56Ux6DcBvEOVNQc6iN51h98a0-KM31SJI1V187zrMx0wHox_-NzH3G7g_5-DczcTezlv7XJRfU-6OLHwTceogt-vzi5_qysng7_tcIT_vurHv2xay0VloWXwspvn9UECgymbfU1J8gxgE3fF__alDU_h6Jggr1GPe");'></div>
+</div>
+<div class="flex items-start gap-3 max-w-[85%]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-9 shrink-0 mt-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiHk53gAkOLC3hPzEP-2kjqC9IBjs4IWQjRw68_JWlHme7eQHeK5x8Cex0w7gIWALImlPg24yekYTs9v1iZSD-RTZv8MXACYVYIEtQxaZ3oXvkaYV0QwzvwWwpIdlJA-bGxbsUzYY6t2Dn4XsSqcaEWeNrXD93OnM0_rp0vHs532XL2pLbJtrKfotb52po0GKREAKMZWrQqHPDoQrJHr1mv7dG6TohowF8tjhL654I8-ym63IJ_4Kq1PcHvlhLlmjYLmy9VmWjM53U");'></div>
+<div class="flex flex-col gap-1.5 items-start">
+<div class="flex items-baseline gap-2">
+<p class="text-xs font-bold text-slate-700">居民 李先生</p>
+<p class="text-[10px] text-slate-400">14:25</p>
+</div>
+<div class="p-1 rounded-2xl rounded-tl-none bg-slate-100 border border-slate-200 overflow-hidden message-shadow">
+<div class="w-64 h-40 bg-center bg-cover rounded-xl mb-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCROILm--eQe-6y77ExOM9OzmfLS3ycoeVKxjz00eOMQAEEbj6pOiX_XL_LLGhigkzZi2W-mUcu27Y0K_7dG6VNL8ii4Ny_dtkXzVVwyeHNivzeCbBvNEp7l6DSZBxTAgWBbwwMlzPrsCqZyhrgQ2ir2VtuPDDSM2a5wZPDU_TQKusEMg_Co_VG1RTCJxfksXZX-zuMLFkH9ap-a9AP8VQUG-76fWIQoiCGDU59ouqHYQRzwlDfl4p3C3wrSidat7-dIuq_N89SRM13");'></div>
+<p class="text-[11px] px-2 py-1 text-slate-500 font-medium">现场照片.jpg • 2.4 MB</p>
+</div>
+<div class="text-sm font-medium leading-relaxed rounded-2xl rounded-tl-none px-4 py-3 bg-slate-100 text-slate-900 border border-slate-200 mt-1 message-shadow">
+                            看起来是那个新建的高层住宅项目。
+                        </div>
+</div>
+</div>
+<div class="flex justify-center my-4">
+<p class="text-[11px] text-slate-400 font-bold bg-slate-50 px-4 py-1.5 rounded-full border border-slate-100 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-primary">auto_awesome</span>
+                        AI 助手已自动识别图片信息与地理位置
+                    </p>
+</div>
+</div>
+<div class="p-6 bg-white border-t border-slate-200">
+<div class="flex gap-2 mb-4 overflow-x-auto pb-2 custom-scrollbar">
+<button class="shrink-0 px-3 py-1.5 text-[11px] font-bold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-primary/30 transition-colors">问候语</button>
+<button class="shrink-0 px-3 py-1.5 text-[11px] font-bold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-primary/30 transition-colors">核实身份</button>
+<button class="shrink-0 px-3 py-1.5 text-[11px] font-bold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-primary/30 transition-colors">确认位置</button>
+<button class="shrink-0 px-3 py-1.5 text-[11px] font-bold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-primary/30 transition-colors">案件进度告知</button>
+</div>
+<div class="relative">
+<textarea class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 pr-32 min-h-[120px] text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-slate-400 font-medium" placeholder="在此输入回复内容..."></textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mood</span>
+</button>
+<button class="bg-primary text-white p-2.5 rounded-lg shadow-lg shadow-primary/20 hover:bg-blue-600 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+                            转为工单
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-red-200 text-red-600 text-xs font-bold rounded-lg hover:bg-red-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">emergency_home</span>
+                            上报所长
+                        </button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] text-slate-400 font-medium">Enter 发送，Shift + Enter 换行</span>
+</div>
+</div>
+</div>
+</main>
+<aside class="w-85 border-l border-slate-200 bg-ai-panel-bg flex flex-col">
+<div class="p-4 border-b border-slate-200 bg-white/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary font-bold">auto_awesome</span>
+<h4 class="font-bold text-sm tracking-tight text-slate-800">AI 智能辅助助手</h4>
+</div>
+<div class="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-6">
+<div>
+<div class="flex items-center justify-between mb-3">
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">智能建议回复</h5>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold border border-primary/20">98% 匹配</span>
+</div>
+<div class="space-y-3">
+<div class="p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-primary hover:shadow-sm transition-all group relative">
+<p class="text-xs leading-relaxed text-slate-700 font-medium">“感谢您提供的照片，李先生。我们的巡逻小队将立即前往枫叶街15号核实施工噪音水平。”</p>
+<div class="mt-2 flex justify-end">
+<span class="text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100 flex items-center gap-1">点击引用 <span class="material-symbols-outlined text-[12px]">keyboard_return</span></span>
+</div>
+</div>
+<div class="p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-primary hover:shadow-sm transition-all group">
+<p class="text-xs leading-relaxed text-slate-700 font-medium">“请稍等，我正在查询该地址目前持有的市政施工许可证及其规定的作业时间。”</p>
+</div>
+</div>
+</div>
+<div>
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">相关法律法规</h5>
+<div class="space-y-2">
+<div class="p-4 bg-white border border-slate-200 border-l-4 border-l-primary rounded-r-xl shadow-sm">
+<h6 class="text-[12px] font-bold text-slate-900 mb-1">《城市区域环境噪声标准》(2024修订)</h6>
+<p class="text-[11px] text-slate-600 leading-relaxed line-clamp-3 font-medium">第四条：建筑施工场界噪声限值，昼间不得超过70分贝，夜间(22:00-06:00)不得超过55分贝...</p>
+<button class="mt-3 text-[10px] text-primary font-bold flex items-center gap-1 hover:underline">
+                                查看完整条文 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<div>
+<h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">历史相似案例</h5>
+<div class="space-y-4">
+<div class="flex gap-3 items-start bg-white/40 p-2 rounded-lg">
+<div class="size-8 rounded bg-white shadow-sm border border-slate-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">description</span>
+</div>
+<div>
+<p class="text-[12px] font-bold text-slate-800">案例 #4421-B</p>
+<p class="text-[11px] text-slate-500 font-medium">枫叶街15号非法夜间施工</p>
+<p class="text-[10px] text-emerald-600 font-bold mt-1 flex items-center gap-1">
+<span class="size-1 bg-emerald-500 rounded-full"></span>
+                                    处理结果：责令停工并罚款
+                                </p>
+</div>
+</div>
+<div class="flex gap-3 items-start bg-white/40 p-2 rounded-lg">
+<div class="size-8 rounded bg-white shadow-sm border border-slate-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">description</span>
+</div>
+<div>
+<p class="text-[12px] font-bold text-slate-800">案例 #3902-A</p>
+<p class="text-[11px] text-slate-500 font-medium">枫叶街路面紧急维修施工</p>
+<p class="text-[10px] text-slate-500 font-bold mt-1 flex items-center gap-1">
+<span class="size-1 bg-slate-400 rounded-full"></span>
+                                    处理结果：已获紧急许可
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-white/80 border-t border-slate-200">
+<div class="flex items-center gap-2 mb-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-[11px] font-bold text-primary">AI 正在实时分析对话内容</span>
+</div>
+<p class="text-[10px] text-slate-500 font-medium leading-relaxed">建议由系统根据对话上下文、地理位置及地方法规自动生成，仅供参考。</p>
+</div>
+</aside>
+</div>
+
+</body></html>

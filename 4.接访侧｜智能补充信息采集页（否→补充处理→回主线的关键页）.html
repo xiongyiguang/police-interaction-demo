@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>信息补充采集 - 所长直通车</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052D9", // Standard administrative blue
+                        "gov-gray": {
+                            50: "#F2F3F5",
+                            100: "#E7E7E7",
+                            200: "#DCDCDC",
+                            600: "#5E6166",
+                            700: "#4E5969",
+                            800: "#1D2129",
+                        }
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "-apple-system", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "2px", "lg": "4px", "xl": "8px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            input, select, textarea {
+                @apply border-gov-gray-200 focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gov-gray-50 font-display text-gov-gray-800 antialiased">
+<div class="relative flex min-h-screen flex-col">
+<header class="flex items-center justify-between border-b border-gov-gray-200 bg-white px-8 py-0 h-16 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V44Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-gov-gray-800 text-lg font-bold tracking-tight">所长直通车</h2>
+</div>
+<nav class="flex h-16 items-center gap-8 ml-8">
+<a class="text-gov-gray-600 hover:text-primary text-sm font-medium h-full flex items-center px-1" href="#">群众入口</a>
+<a class="text-primary text-sm font-bold h-full flex items-center px-1 border-b-2 border-primary" href="#">接访工作台</a>
+<a class="text-gov-gray-600 hover:text-primary text-sm font-medium h-full flex items-center px-1" href="#">工单中心</a>
+<a class="text-gov-gray-600 hover:text-primary text-sm font-medium h-full flex items-center px-1" href="#">治理看板</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gov-gray-600 hover:bg-gov-gray-50 rounded-full">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-gov-gray-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 border border-gov-gray-200" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsGQuaKUCqbbf3GMpI0dUnByyNyCEauUUZaLpOfU9NwEPC1aitP4MxTK1T8dgqWf2FMwUw5YWtOzHS6xRAVL-QeM36yrLRBnfKi388kQOp0UNkPl2UA9lzgC04i36LO-ex5-YQb3vQCNlsz257ngSFhvJI_jT3ujSiowaRPEyJCd-J5YorlctL6w88GnLetiBmCuvDX9j_swp-0JeoLBtsWwlCG0r9QTIVG651kW2FOqy9-ES68zhy-wK27ONGPUWZ0pjdz_uju8dP");'></div>
+<span class="text-sm font-medium text-gov-gray-700">林警官</span>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<aside class="w-72 border-r border-gov-gray-200 bg-white flex flex-col shrink-0">
+<div class="p-5 border-b border-gov-gray-100">
+<h1 class="text-gov-gray-800 text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">quick_reference_all</span>
+                    原始对话参考
+                </h1>
+</div>
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
+<div class="bg-gov-gray-50 rounded-lg p-4 border border-gov-gray-100">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 font-bold rounded">对话片段</span>
+<span class="text-[10px] text-gov-gray-600">14:22:15</span>
+</div>
+<p class="text-sm text-gov-gray-700 leading-relaxed italic">
+                        "在北门这块儿有个黑色的SUV，车牌号开头是AB的，在这停了两个多小时了，一直没熄火也没人下车..."
+                    </p>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-gov-gray-50 cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-gov-gray-600 group-hover:text-primary text-xl">image</span>
+<p class="text-gov-gray-700 text-sm font-medium">现场照片 (2)</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-gov-gray-50 cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-gov-gray-600 group-hover:text-primary text-xl">contact_page</span>
+<p class="text-gov-gray-700 text-sm font-medium">关联居民档案</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-gov-gray-50 cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-gov-gray-600 group-hover:text-primary text-xl">history_edu</span>
+<p class="text-gov-gray-700 text-sm font-medium">历史处置记录</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto p-10">
+<div class="max-w-4xl mx-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<div class="flex items-center gap-2 text-gov-gray-600 text-sm mb-1">
+<a class="hover:text-primary" href="#">接访工作台</a>
+<span>/</span>
+<span class="text-gov-gray-800">信息补充采集</span>
+</div>
+<h1 class="text-gov-gray-800 text-2xl font-bold tracking-tight">信息补充采集</h1>
+<p class="text-gov-gray-600 text-sm mt-1">请核对并完善系统自动提取的信息，确保记录的准确性和规范性。</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-gov-gray-200 bg-white text-gov-gray-700 text-sm font-medium hover:bg-gov-gray-50 transition-colors rounded">
+<span class="material-symbols-outlined text-lg">assignment</span>
+<span>查阅填写规范</span>
+</button>
+</div>
+<div class="bg-white border border-gov-gray-200 shadow-sm rounded-xl overflow-hidden">
+<div class="px-8 py-5 border-b border-gov-gray-200 bg-gov-gray-50/50 flex items-center justify-between">
+<h2 class="text-gov-gray-800 font-bold flex items-center gap-2">
+<span class="w-1 h-4 bg-primary rounded-full"></span>
+                            记录详情
+                        </h2>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                                AI 预填完成
+                            </span>
+</div>
+</div>
+<div class="p-10 space-y-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700 flex items-center gap-1.5">
+                                    事发时间 <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 rounded border px-4 text-gov-gray-800 text-sm" type="text" value="2023年10月24日 14:30"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-gov-gray-600 text-lg">calendar_month</span>
+</div>
+</div>
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700 flex items-center gap-1.5">
+                                    事发地点 <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 rounded border px-4 text-gov-gray-800 text-sm pr-12" placeholder="输入地点或在地图选择" type="text" value="城北家园东门入口处"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-primary hover:bg-primary/5 rounded">
+<span class="material-symbols-outlined text-lg">location_on</span>
+</button>
+</div>
+</div>
+</div>
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700">涉及人员</label>
+<div class="flex flex-wrap gap-2 p-3 bg-gov-gray-50 border border-gov-gray-100 rounded-lg min-h-[52px]">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-gov-gray-200 text-gov-gray-800 text-xs font-medium rounded-full shadow-sm">
+                                    李卫 (居民)
+                                    <button class="material-symbols-outlined text-sm text-gov-gray-600 hover:text-red-500">close</button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-gov-gray-200 text-gov-gray-800 text-xs font-medium rounded-full shadow-sm">
+                                    嫌疑车辆驾驶员
+                                    <button class="material-symbols-outlined text-sm text-gov-gray-600 hover:text-red-500">close</button>
+</span>
+<button class="inline-flex items-center gap-1 px-3 py-1 border border-dashed border-gov-gray-200 text-gov-gray-600 text-xs font-medium rounded-full hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                                    添加人员
+                                </button>
+</div>
+</div>
+<div class="space-y-2.5">
+<div class="flex justify-between items-center">
+<label class="text-sm font-bold text-gov-gray-700">事由详述 <span class="text-red-500">*</span></label>
+<p class="text-[11px] text-gov-gray-600">已根据对话内容自动生成摘要</p>
+</div>
+<textarea class="w-full rounded border border-gov-gray-200 p-4 text-gov-gray-800 text-sm leading-relaxed" rows="5">居民反映，在城北家园东门入口处有一辆黑色SUV（车牌：AB-1234）长时间停放，已持续约2小时。车辆处于发动状态但未熄火，驾驶员始终待在车内未曾下车。物业保安于14:15分报告，认为存在安全隐患，请求排查。</textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700">所属分类</label>
+<select class="w-full h-11 rounded border px-4 text-gov-gray-800 text-sm appearance-none">
+<option>社会治安</option>
+<option>交通秩序</option>
+<option>矛盾纠纷</option>
+<option>违法举报</option>
+</select>
+</div>
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700">紧急程度</label>
+<div class="flex h-11 bg-gov-gray-50 border border-gov-gray-100 rounded p-1">
+<button class="flex-1 text-xs font-medium rounded transition-all text-gov-gray-600 hover:text-gov-gray-800">低</button>
+<button class="flex-1 text-xs font-bold rounded transition-all bg-white text-primary shadow-sm ring-1 ring-black/5">中</button>
+<button class="flex-1 text-xs font-medium rounded transition-all text-gov-gray-600 hover:text-gov-gray-800">高</button>
+</div>
+</div>
+<div class="space-y-2.5">
+<label class="text-sm font-bold text-gov-gray-700">生成任务工单</label>
+<div class="flex items-center justify-between h-11 border border-gov-gray-200 rounded px-4 bg-white">
+<span class="text-xs text-gov-gray-600">是否需要下发派单</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-gov-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="px-8 py-6 bg-gov-gray-50 border-t border-gov-gray-200 flex justify-end gap-4">
+<button class="px-6 py-2.5 border border-gov-gray-200 bg-white text-gov-gray-700 text-sm font-bold hover:bg-gov-gray-100 transition-colors rounded shadow-sm">
+                            存为草稿
+                        </button>
+<button class="px-10 py-2.5 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all rounded shadow-md shadow-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            确认并提交
+                        </button>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white border border-gov-gray-200 rounded-xl p-5 flex gap-4 items-center shadow-sm">
+<div class="w-20 h-20 bg-gov-gray-100 rounded border border-gov-gray-200 flex items-center justify-center overflow-hidden shrink-0">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnMcE41tJQGQ7Cu69f9S8X-pnvx1afbSb0KwKatXtkjz0TnSrODzlNOzVy4JHIWS0EaDeqHk4YxdL4m_jUH8b_csyf7urIJR2JNNxYDe3uUL0Cy1if95q9vC-M4WQTpEbrKLNOuYlKz0dZR-5MEOsjo90_ENxbEcKOSNtFayqT02YsugM1yhsc1yiUQke710W6teHYOUzw0ba5EcgYLu4UhoSt4Hd14wuehcOuEK7GR9KyatqxVMgo6O_2EjI0qiWsuDCkK4OvSEt4'); opacity: 0.8;"></div>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-primary mb-1 uppercase tracking-wider">位置预览</p>
+<p class="text-sm text-gov-gray-800 font-bold">城北家园 - A区东门</p>
+<p class="text-[11px] text-gov-gray-600 mt-0.5">坐标已根据基站及语义自动锁定</p>
+</div>
+</div>
+<div class="bg-white border border-gov-gray-200 rounded-xl p-5 flex gap-4 items-center shadow-sm">
+<div class="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1.5">
+<p class="text-[10px] font-bold text-primary uppercase tracking-wider">AI 提取置信度</p>
+<span class="text-sm font-bold text-primary">92%</span>
+</div>
+<div class="w-full bg-gov-gray-100 h-1.5 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 92%"></div>
+</div>
+<p class="text-[10px] text-gov-gray-600 mt-1.5 italic">提取结果已经过多次模型校验</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

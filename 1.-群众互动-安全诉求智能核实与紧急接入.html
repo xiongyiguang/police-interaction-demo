@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>群众互动-安全诉求智能核实与紧急接入场景演示</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans SC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Public Sans', 'Noto Sans SC', sans-serif; }
+        .phone-mockup {
+            width: 375px;
+            height: 760px;
+            border: 12px solid #1e293b;
+            border-radius: 40px;
+            position: relative;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #1e293b;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 20;
+        }
+        .message-bubble-left {
+            border-radius: 2px 18px 18px 18px;
+        }
+        .message-bubble-right {
+            border-radius: 18px 18px 2px 18px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#0d141b]">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-solid border-[#e7edf3] px-4 md:px-20 lg:px-40 py-3">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<h2 class="text-[#0d141b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">群众入口</h2>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-white text-sm font-bold" href="#">群众入口</a>
+<a class="text-[#0d141b] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">接访工作台</a>
+<a class="text-[#0d141b] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">工单中心</a>
+<a class="text-[#0d141b] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">治理看板</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+<span class="truncate">警务端入口</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200" data-alt="Police officer profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuuvJI7Q12yCg067fQcMrGH-LR3GGisPTXRVsVmzo5Hj0ulrFwHjZ2AwGZwgPyktJT3rTFEb1FOeUM6Bf10FQy8_LXcdgoLmg3vVtSXnhhfjlZxCkBHFYq4VWQchZivuKpyxWLIwRze1h-KAK5BQEVpMR6FYMlEw8wyBZLJYOd6rWKRLwbyIZWrPTSZIQk6RX5Vhj5W_YgPF8MJngtRc93B8uv3Mhy2EKl2FLr0ghmjZvTqg3aHyDB1UKn_ub9EqZ2dDa2FmyrT_PY");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 py-10">
+<!-- Page Heading -->
+<div class="flex flex-col gap-3 mb-12">
+<span class="inline-flex w-fit items-center rounded-full bg-primary/10 px-4 py-1 text-sm font-bold text-primary">群众互动场景演示</span>
+<h1 class="text-[#0d141b] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">群众互动-安全诉求智能核实与紧急接入场景演示</h1>
+<p class="text-[#4c739a] dark:text-slate-400 text-lg font-normal">通过 AI 预判、证据核实与人工接入联动，快速响应社区安全诉求，形成警民互通闭环。</p>
+</div>
+<div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-8">
+<h2 class="text-[#0d141b] dark:text-slate-200 tracking-light text-[22px] font-bold leading-tight bg-primary/10 py-3 px-6 rounded-full inline-block">
+                左屏：阶段 01｜AI智能预处
+            </h2>
+<h2 class="text-[#0d141b] dark:text-slate-200 tracking-light text-[22px] font-bold leading-tight bg-primary/10 py-3 px-6 rounded-full inline-block">
+                右屏：阶段 02｜人工介入处置
+            </h2>
+</div>
+<!-- Dual Phone Layout -->
+<div class="flex flex-col lg:flex-row justify-center items-center gap-12 py-10">
+<!-- Left Screen: Citizen Reporting -->
+<div class="flex flex-col items-center gap-6">
+<span class="text-sm font-bold text-slate-500 uppercase tracking-widest">交互阶段 01: 智能分流</span>
+<div class="phone-mockup shadow-2xl">
+<div class="phone-notch"></div>
+<!-- Status Bar -->
+<div class="flex justify-between items-center px-8 pt-6 pb-2 text-[12px] font-bold">
+<span>9:41</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<!-- Chat Header -->
+<div class="flex items-center gap-3 px-4 py-3 border-b border-slate-100">
+<span class="material-symbols-outlined text-slate-400">arrow_back_ios</span>
+<div class="flex flex-col">
+<span class="font-bold text-sm">社区平安智慧助手</span>
+<span class="text-[10px] text-green-500 flex items-center gap-1"><span class="size-1.5 bg-green-500 rounded-full"></span>AI 实时在线</span>
+</div>
+</div>
+<!-- Chat Content -->
+<div class="flex flex-col gap-4 p-4 overflow-y-auto h-[580px] bg-[#f2f3f5]">
+<div class="flex justify-center"><span class="text-[10px] bg-slate-200 px-2 py-0.5 rounded text-slate-500">今天 14:20</span></div>
+<!-- Citizen Message -->
+<div class="flex justify-end items-start gap-2">
+<div class="message-bubble-right bg-primary text-white p-3 text-sm max-w-[80%] shadow-sm">
+                                走廊里有个形迹可疑的人一直在晃悠，看起来不像是这里的住户。
+                            </div>
+<div class="size-8 rounded-lg bg-slate-300 flex-shrink-0" data-alt="Citizen user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5QTyb7g_KiLkq1nts-xdhLHACv6VO8pfhZK7-xwDGKoF02NZ5kpjLGCVd7Lu5dDjQvIG6xZTJ1hNcT0UB814ao7vx6MX9KfDbzrBFB1MGTvhYZ7lXHZSsMxLWH-BU46tXTlYmfzbVTkDByC_nPsS18lqzEDd09PyGYP56UBknmX8ifx1cEIRIwphg-aJHIsgitLaA9GiviHxTnkcWRPQ6smJVtE1QGazM7OXlgg3BlkcvG5v4raaAbcIa3B-xT80twhMEaa7Gfeya'); background-size: cover;"></div>
+</div>
+<!-- AI Response Card -->
+<div class="flex items-start gap-2">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">smart_toy</span>
+</div>
+<div class="message-bubble-left bg-white p-4 text-sm max-w-[85%] shadow-sm border border-slate-200">
+<p class="font-bold text-red-500 flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-sm">warning</span> 安全第一提醒
+                                </p>
+<p class="mb-3 text-slate-700">收到，已同步网格警务室。请您务必：</p>
+<div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-3">
+<div class="flex items-start gap-2 text-[12px]">
+<span class="text-primary font-bold">1.</span>
+<span class="text-slate-600">确认房门已反锁，不要开门。</span>
+</div>
+<div class="flex items-start gap-2 text-[12px]">
+<span class="text-primary font-bold">2.</span>
+<span class="text-slate-600">关闭灯光，保持室内安静。</span>
+</div>
+<div class="flex items-start gap-2 text-[12px]">
+<span class="text-primary font-bold">3.</span>
+<span class="text-slate-600">不要试图与对方对峙。</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-lg font-bold flex items-center justify-center gap-2 mb-2">
+<span class="material-symbols-outlined text-sm">call</span> 紧急连线警务站
+                                </button>
+<button class="w-full border border-primary text-primary py-2 rounded-lg font-bold text-[12px]">
+                                    上传图片/视频协助核实
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Screen: Human Escalation -->
+<div class="flex flex-col items-center gap-6">
+<span class="text-sm font-bold text-slate-500 uppercase tracking-widest">交互阶段 02: 紧急接入</span>
+<div class="phone-mockup shadow-2xl">
+<div class="phone-notch"></div>
+<!-- Status Bar -->
+<div class="flex justify-between items-center px-8 pt-6 pb-2 text-[12px] font-bold">
+<span>9:45</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<!-- Chat Header -->
+<div class="flex items-center gap-3 px-4 py-3 border-b border-slate-100 bg-red-50">
+<span class="material-symbols-outlined text-slate-400">arrow_back_ios</span>
+<div class="flex flex-col">
+<span class="font-bold text-sm text-red-600">警务在线 - 连线中</span>
+<span class="text-[10px] text-red-400 flex items-center gap-1">值班民警：王警官</span>
+</div>
+<div class="ml-auto flex gap-2">
+<span class="material-symbols-outlined text-red-500 animate-pulse">videocam</span>
+</div>
+</div>
+<!-- Chat Content -->
+<div class="flex flex-col gap-4 p-4 overflow-y-auto h-[500px] bg-[#f2f3f5]">
+<div class="flex justify-center"><span class="text-[10px] bg-red-100 px-2 py-0.5 rounded text-red-600 font-medium">已开启实时视频核实</span></div>
+<!-- Evidence Upload Message -->
+<div class="flex justify-end items-start gap-2">
+<div class="message-bubble-right bg-white p-2 max-w-[70%] shadow-sm border border-slate-200">
+<div class="rounded-lg overflow-hidden bg-slate-200 aspect-[3/4]" data-alt="Blurry photo of a person in a hallway" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuC78BzJmTiAZie1IeWaWJjM4nVKx9oOWpHJD-GMtzc1PxYKRdpy0P8nKa0TGXj2FLySjtZ5L9NfjOpIfPssr2-QPD66v3CWTn2QI_xXNh002E9MFF-v61ZSVLX136okC9x5jccHOrENeTkTFdr93bvMrOHyNQVFg73m8ZWqWm1b0GrrPTZY8AS4E_OHXreM_q1weOnNcCGw-H7O2HXPGpioaq846NYfRLbHYfGQAxMip58K2my6itCdxbew3NeAPi7Jkqj4_QFpiXoQ'); background-size: cover; background-position: center;">
+<div class="h-full flex items-end p-2">
+<span class="text-white text-[10px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> 已上传证据
+                                        </span>
+</div>
+</div>
+</div>
+<div class="size-8 rounded-lg bg-slate-300 flex-shrink-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7EjVFVeZw8X0hoCShCVyZnGPcd2NyEl5tl4ZepJHip_0Q-5WyrQw96WJdRDgMjzeHaaZuDXIUbaW_9yJoxP0eAeedjtw46bd8BeQuK7rZTmQxjfqwYraJ1Wfgeg9fe_sNPXHofRH8B1_T77MUl_zHncuShIRIjlviMeTDUOjs3MmbaIIn4GhwusjueLa7UGMlDEVAulCV8LBDuV3HQyGk1ffv7i1WqKrH-13wbcmBbBK-c8Hd6gm06W9IazzJ6t6q5Y_tVmaoXJSX'); background-size: cover;"></div>
+</div>
+<!-- Police Response -->
+<div class="flex items-start gap-2">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-white text-xl">person_pin_circle</span>
+</div>
+<div class="message-bubble-left bg-white p-3 text-sm max-w-[80%] shadow-sm border border-slate-200">
+<p class="text-slate-700">收到！我正在调取您所在楼层的监控视频。请保持连线状态，网格巡逻车已在途中。</p>
+</div>
+</div>
+</div>
+<!-- Video Link Footer -->
+<div class="absolute bottom-0 left-0 w-full bg-slate-900 p-4 text-white">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full border-2 border-primary" data-alt="Duty officer Wang thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8v8dv-4b4rqMBYgFL96nwvJK56Cl9L4hU9qBwisEpUAutY4CYKMTrIMP7b8ti8iIoJyIiGzqSKt6P-ObqEeYK1RSisCm9n3u73Auu6iBgU4Q-A35Qu48_Me2YukCFZWzYALFoyQjJQmx60vTTiYwJVjHZ3QXjKrfbKIyaIudMlN7rp1FXiT8dG5BYufr4bUCkn7dmoQB45dZsvZ1pI9HsdFsnAAuX4TNOrKSpSEECZN_4BJ5ngaaEBWXBGLy3T_57HLiOQbGugKyT'); background-size: cover;"></div>
+<div class="absolute -top-1 -right-1 size-3 bg-red-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
+</div>
+<div>
+<p class="text-xs font-bold">王警官正在视频通话...</p>
+<p class="text-[10px] text-slate-400">00:48 | 通话质量极佳</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">mic_off</span>
+</div>
+<div class="size-8 rounded-full bg-red-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">call_end</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-primary h-1 rounded-full overflow-hidden">
+<div class="bg-white/40 h-full w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Info Header -->
+<div class="mt-16 bg-white dark:bg-background-dark p-8 rounded-xl border border-slate-200 shadow-sm">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span> 核心效能指标
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-slate-500 text-sm">平均AI响应时长</span>
+<span class="text-2xl font-black text-primary">&lt; 1.5 秒</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-slate-500 text-sm">警民连线成功率</span>
+<span class="text-2xl font-black text-primary">99.8 %</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-slate-500 text-sm">有效警情闭环率</span>
+<span class="text-2xl font-black text-primary">100 %</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-10 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 所长直通车 | 隐私政策 | 服务条款 | 联系我们</p>
+</footer>
+</body></html>

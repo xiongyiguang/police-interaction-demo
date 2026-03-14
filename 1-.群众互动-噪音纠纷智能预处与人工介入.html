@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>群众互动-噪音纠纷智能预处与人工介入场景演示</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans SC"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', 'Noto Sans SC', sans-serif; }
+        .mobile-frame {
+            width: 375px;
+            height: 720px;
+            border: 8px solid #1e293b;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            background: #f8fafc;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .chat-container {
+            height: calc(100% - 110px);
+            overflow-y: auto;
+        }
+        .wecom-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 40px 16px 12px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-solid border-[#e7edf3] px-4 md:px-20 lg:px-40 py-3">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-4 text-[#0d141b] dark:text-slate-100">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">群众入口</h2>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-white text-sm font-bold" href="#">群众入口</a>
+<a class="text-[#0d141b] dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">接访工作台</a>
+<a class="text-[#0d141b] dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">工单中心</a>
+<a class="text-[#0d141b] dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">治理看板</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+<span class="truncate">警务端入口</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200" data-alt="Police officer profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuuvJI7Q12yCg067fQcMrGH-LR3GGisPTXRVsVmzo5Hj0ulrFwHjZ2AwGZwgPyktJT3rTFEb1FOeUM6Bf10FQy8_LXcdgoLmg3vVtSXnhhfjlZxCkBHFYq4VWQchZivuKpyxWLIwRze1h-KAK5BQEVpMR6FYMlEw8wyBZLJYOd6rWKRLwbyIZWrPTSZIQk6RX5Vhj5W_YgPF8MJngtRc93B8uv3Mhy2EKl2FLr0ghmjZvTqg3aHyDB1UKn_ub9EqZ2dDa2FmyrT_PY");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto py-10 px-4">
+<!-- HeadlineText Component -->
+<div class="flex flex-col gap-3 mb-12">
+<span class="inline-flex w-fit items-center rounded-full bg-primary/10 px-4 py-1 text-sm font-bold text-primary">群众互动场景演示</span>
+<h1 class="text-[#0d141b] dark:text-slate-100 text-4xl font-black leading-tight tracking-[-0.033em]">群众互动-噪音纠纷智能预处与人工介入场景演示</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-3xl">展示从 AI 智能预处、法规宣导到人工警务介入的完整联动机制，提升群众满意度与警务处置效率。</p>
+</div>
+<!-- TextGrid Component -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+<div class="flex flex-1 gap-4 rounded-xl border border-[#cfdbe7] dark:border-slate-700 bg-white dark:bg-slate-800 p-5 flex-col shadow-sm">
+<div class="text-primary bg-primary/10 w-10 h-10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-[#0d141b] dark:text-slate-100 text-lg font-bold">阶段 01｜AI智能预处</h2>
+<p class="text-slate-600 dark:text-slate-400 text-sm">利用大模型进行共情安抚，并基于《噪声污染防治法》进行法规宣导与自助存证指导。</p>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border border-[#cfdbe7] dark:border-slate-700 bg-white dark:bg-slate-800 p-5 flex-col shadow-sm">
+<div class="text-primary bg-primary/10 w-10 h-10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">local_police</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-[#0d141b] dark:text-slate-100 text-lg font-bold">阶段 02｜人工介入处置</h2>
+<p class="text-slate-600 dark:text-slate-400 text-sm">AI完成结构化信息采集后，自动生成工单并联动派出所综合指挥室，调度警力上门。</p>
+</div>
+</div>
+</div>
+<!-- Mobile Interaction Display -->
+<div class="flex flex-wrap justify-center gap-16">
+<!-- Left Mobile Screen: AI Guidance -->
+<div class="flex flex-col items-center gap-4">
+<span class="text-sm font-bold text-slate-500 uppercase tracking-widest">视图 1: 智能感理与法规宣导</span>
+<div class="mobile-frame">
+<div class="wecom-header flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">arrow_back_ios</span>
+<div class="flex-1 flex flex-col">
+<span class="font-bold text-sm">xx派出所 - 所长小助手</span>
+<span class="text-[10px] text-green-500 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> 智能预处中
+                            </span>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_horiz</span>
+</div>
+<div class="chat-container p-4 space-y-4">
+<!-- Citizen Message -->
+<div class="flex flex-col items-end gap-1">
+<p class="text-[11px] text-slate-400 mr-2">居民 (您)</p>
+<div class="bg-primary text-white p-3 rounded-lg rounded-tr-none max-w-[85%] text-sm shadow-sm">
+                                隔壁工地施工声音太大了，快半夜了还不停，根本没法睡觉！
+                            </div>
+</div>
+<!-- AI Response -->
+<div class="flex flex-col items-start gap-1">
+<p class="text-[11px] text-slate-400 ml-2">所长小助手 (AI)</p>
+<div class="bg-white border border-slate-200 p-3 rounded-lg rounded-tl-none max-w-[90%] text-sm shadow-sm space-y-3">
+<p>非常理解您的困扰。深夜施工确实严重影响休息。</p>
+<div class="bg-blue-50 border-l-4 border-primary p-2 space-y-1">
+<p class="text-[11px] font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">gavel</span> 法规科普
+                                    </p>
+<p class="text-[10px] text-slate-600 leading-relaxed">
+                                        根据《噪声污染防治法》，建筑施工噪声在 22:00 至次日 6:00 期间严禁超标排放。
+                                    </p>
+</div>
+<div class="flex flex-col gap-2">
+<button class="w-full py-2 border border-primary text-primary rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-blue-50">
+<span class="material-symbols-outlined text-sm">mic</span> 一键录音取证
+                                    </button>
+<button class="w-full py-2 bg-primary text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">support_agent</span> 请求警力介入
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full h-12 bg-white border-t border-slate-200 flex items-center px-4 gap-3">
+<span class="material-symbols-outlined text-slate-400">add_circle</span>
+<div class="flex-1 h-8 bg-slate-100 rounded-full"></div>
+<span class="material-symbols-outlined text-slate-400">sentiment_satisfied</span>
+</div>
+</div>
+</div>
+<!-- Right Mobile Screen: Human Intervention -->
+<div class="flex flex-col items-center gap-4">
+<span class="text-sm font-bold text-slate-500 uppercase tracking-widest">视图 2: 结构化采集与调度</span>
+<div class="mobile-frame">
+<div class="wecom-header flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">arrow_back_ios</span>
+<div class="flex-1 flex flex-col">
+<span class="font-bold text-sm">xx派出所 - 所长小助手</span>
+<span class="text-[10px] text-orange-500 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span> 警力调度中
+                            </span>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_horiz</span>
+</div>
+<div class="chat-container p-4 space-y-4">
+<div class="flex flex-col items-end gap-1">
+<div class="bg-primary text-white p-3 rounded-lg rounded-tr-none text-sm">请求警力介入</div>
+</div>
+<div class="flex flex-col items-start gap-1">
+<p class="text-[11px] text-slate-400 ml-2">所长小助手 (AI)</p>
+<div class="bg-white border border-slate-200 p-3 rounded-lg rounded-tl-none max-w-[90%] text-sm shadow-sm space-y-3">
+<p>收到。已为您转接人工派警。为提高处置效率，请核实以下信息：</p>
+<div class="space-y-2 border-t pt-2">
+<div class="flex justify-between items-center bg-slate-50 p-2 rounded">
+<span class="text-[11px] text-slate-500">具体楼栋/房间</span>
+<span class="text-xs font-medium">8号楼 1502室</span>
+</div>
+<div class="flex justify-between items-center bg-slate-50 p-2 rounded">
+<span class="text-[11px] text-slate-500">噪音来源</span>
+<span class="text-xs font-medium">邻近工地打桩机</span>
+</div>
+<div class="flex justify-between items-center bg-slate-50 p-2 rounded">
+<span class="text-[11px] text-slate-500">当前体感分贝</span>
+<span class="text-xs font-medium">强烈震感/无法入睡</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="bg-slate-100 text-slate-700 p-3 rounded-lg rounded-tl-none text-sm italic">
+                                正在为您生成处警指令... 100%
+                            </div>
+</div>
+</div>
+<!-- Dispatch Status Bar -->
+<div class="absolute bottom-12 w-full p-2">
+<div class="bg-primary/95 text-white p-3 rounded-xl shadow-lg flex items-center gap-3">
+<div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">local_police</span>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-medium opacity-80">紧急任务已派发</p>
+<p class="text-xs font-bold tracking-wide">李警官 (xx派出所) 正在赶往现场</p>
+</div>
+<div class="bg-white text-primary rounded-full px-2 py-1 text-[10px] font-bold">预计 8min</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full h-12 bg-white border-t border-slate-200 flex items-center px-4 gap-3">
+<span class="material-symbols-outlined text-slate-400">keyboard</span>
+<div class="flex-1 h-8 bg-slate-100 rounded-full"></div>
+<span class="material-symbols-outlined text-slate-400">mic</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-10 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 所长直通车 | 隐私政策 | 服务条款 | 联系我们</p>
+</footer>
+</body></html>

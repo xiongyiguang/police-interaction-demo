@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>治理看板 - 运行分析</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #0284c7;
+            --secondary: #0d9488;
+            --accent: #f59e0b;
+            --bg-main: #f8fafc;
+            --border-light: #e2e8f0;
+            --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+        body {
+            font-family: 'Public Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0284c7",
+                        "secondary": "#0d9488",
+                        "warning": "#f59e0b",
+                        "neutral-bg": "#f8fafc",
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-neutral-bg text-slate-800 min-h-screen">
+<div class="layout-container flex flex-col h-full">
+<header class="flex items-center justify-between border-b border-slate-200 bg-white px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined font-bold">account_balance</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-slate-900 text-base font-bold leading-tight">中心城区派出所</h2>
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">所长直通车</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:text-primary text-sm font-semibold transition-colors" href="#">群众入口</a>
+<a class="text-slate-500 hover:text-primary text-sm font-semibold transition-colors" href="#">接访工作台</a>
+<a class="text-slate-500 hover:text-primary text-sm font-semibold transition-colors" href="#">工单中心</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-4 mt-4" href="#">治理看板</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden lg:flex items-center relative w-64">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-lg">search</span>
+<input class="w-full h-9 rounded-full bg-slate-100 border-none text-sm pl-10 focus:ring-2 focus:ring-primary/20 text-slate-900 placeholder:text-slate-400" placeholder="搜索日志、群组或关键词..."/>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-full size-9 hover:bg-slate-100 text-slate-500 transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-9 hover:bg-slate-100 text-slate-500 transition-colors">
+<span class="material-symbols-outlined text-xl">help</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-slate-200 mx-1"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900 leading-none">分局教导员</p>
+<p class="text-[10px] text-slate-400 mt-1">系统管理员</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-slate-200" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeukfhOhDsnWdYTXuvratyRY7iRw_3-EG7xemNKmq7OZmEKNd8ix6Vd9X2cEAch8BUDhKffHmBaT6qE0ly6GqyS2NrN3SBCDbTnQlwZOq-qXT41wJF27ReVa1N3VcymzoRTvCk8ku5VJPoJ9pN0WciJg2_CdAlqxAkTGPDIgjKSiBfD9aUcUvjg1kJ0thoBXJcI_Ye_Pvszz1OxmarFrbcX7BY3yyRvAC_lcWSEnD1zjSPN-u7Q1aJTR0Zpubh7gaOD5x4wmmGG7Hi");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-6 md:px-10 py-8">
+<div class="max-w-[1400px] mx-auto">
+<div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+<div class="flex flex-col gap-1">
+<p class="text-slate-900 text-3xl font-extrabold tracking-tight">治理看板</p>
+<p class="text-slate-500 text-sm">实时监控企业微信民众互动及基层社会治理效能</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-white border border-slate-200 text-slate-700 text-sm font-bold shadow-sm hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg">file_download</span>
+<span>导出数据</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-md shadow-primary/20 hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-lg">campaign</span>
+<span>发起通知</span>
+</button>
+</div>
+</div>
+<div class="flex gap-2 mb-8 overflow-x-auto pb-2 custom-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary/10 px-4 text-primary text-xs font-bold border border-primary/20">
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+<span>实时动态</span>
+</button>
+<div class="h-9 w-[1px] bg-slate-200 mx-1"></div>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-white border border-slate-200 px-4 text-slate-600 text-xs font-semibold hover:border-slate-300">
+<span>时间范围: 今日</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-white border border-slate-200 px-4 text-slate-600 text-xs font-semibold hover:border-slate-300">
+<span>所有警务室</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-white border border-slate-200 px-4 text-slate-600 text-xs font-semibold hover:border-slate-300">
+<span>紧急程度: 全部</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">咨询总量</p>
+<span class="flex items-center text-emerald-600 text-[10px] font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+<span class="material-symbols-outlined text-xs mr-0.5">trending_up</span> 12.5%
+                        </span>
+</div>
+<p class="text-slate-900 text-3xl font-black">24,812</p>
+<p class="text-slate-400 text-xs mt-2">今日累计接收消息</p>
+</div>
+<div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">在线警员</p>
+<span class="flex items-center text-rose-600 text-[10px] font-bold bg-rose-50 px-2 py-0.5 rounded-full border border-rose-100">
+<span class="material-symbols-outlined text-xs mr-0.5">trending_down</span> 2.1%
+                        </span>
+</div>
+<p class="text-slate-900 text-3xl font-black">42</p>
+<p class="text-slate-400 text-xs mt-2">当前正在接线人次</p>
+</div>
+<div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">平均响应时长</p>
+<span class="flex items-center text-emerald-600 text-[10px] font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+<span class="material-symbols-outlined text-xs mr-0.5">timer</span> -15s
+                        </span>
+</div>
+<p class="text-slate-900 text-3xl font-black">1m 12s</p>
+<p class="text-slate-400 text-xs mt-2">首次回复平均速度</p>
+</div>
+<div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider">群众满意度</p>
+<span class="flex items-center text-emerald-600 text-[10px] font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+<span class="material-symbols-outlined text-xs mr-0.5">star</span> 0.5%
+                        </span>
+</div>
+<p class="text-slate-900 text-3xl font-black">94.8%</p>
+<p class="text-slate-400 text-xs mt-2">基于实时反馈统计</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-slate-900 font-bold text-lg">消息流量趋势分析</h3>
+<p class="text-slate-500 text-xs">24小时实时互动量分布</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[11px] font-bold text-slate-500 uppercase tracking-tight">今日</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-slate-300"></span>
+<span class="text-[11px] font-bold text-slate-500 uppercase tracking-tight">昨日同期</span>
+</div>
+</div>
+</div>
+<div class="h-[260px] w-full relative">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 200">
+<defs>
+<linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.15"></stop>
+<stop offset="100%" stop-color="#0284c7" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<line class="text-slate-100" stroke="currentColor" stroke-dasharray="0" x1="0" x2="1000" y1="50" y2="50"></line>
+<line class="text-slate-100" stroke="currentColor" stroke-dasharray="0" x1="0" x2="1000" y1="100" y2="100"></line>
+<line class="text-slate-100" stroke="currentColor" stroke-dasharray="0" x1="0" x2="1000" y1="150" y2="150"></line>
+<path d="M0,180 Q100,160 200,80 T400,120 T600,40 T800,100 T1000,60 L1000,200 L0,200 Z" fill="url(#areaGradient)"></path>
+<path d="M0,180 Q100,160 200,80 T400,120 T600,40 T800,100 T1000,60" fill="none" stroke="#0284c7" stroke-linecap="round" stroke-width="2.5"></path>
+<path class="text-slate-300" d="M0,190 Q150,170 300,140 T500,150 T700,110 T900,130 T1000,140" fill="none" stroke="currentColor" stroke-dasharray="4" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<div class="flex justify-between mt-6 px-1">
+<span class="text-[10px] font-bold text-slate-400">00:00</span>
+<span class="text-[10px] font-bold text-slate-400">06:00</span>
+<span class="text-[10px] font-bold text-slate-400">12:00</span>
+<span class="text-[10px] font-bold text-slate-400">18:00</span>
+<span class="text-[10px] font-bold text-slate-400">23:59</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<h3 class="text-slate-900 font-bold text-lg mb-1">自动化效能分析</h3>
+<p class="text-slate-500 text-xs mb-8">AI自动闭环率 vs 人工介入率</p>
+<div class="flex flex-col gap-8 items-center justify-center py-4">
+<div class="relative size-44">
+<svg class="size-full transform -rotate-90">
+<circle class="text-slate-100" cx="88" cy="88" fill="transparent" r="78" stroke="currentColor" stroke-width="14"></circle>
+<circle cx="88" cy="88" fill="transparent" r="78" stroke="#0d9488" stroke-dasharray="490" stroke-dashoffset="108" stroke-linecap="round" stroke-width="14"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-3xl font-black text-slate-900">78%</span>
+<span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">智能分流</span>
+</div>
+</div>
+<div class="w-full space-y-5">
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-xs font-bold text-slate-600">AI 智能回复</span>
+<span class="text-xs font-bold text-secondary">78.2%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 78.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-xs font-bold text-slate-600">人工转办/介入</span>
+<span class="text-xs font-bold text-warning">21.8%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-warning h-full rounded-full" style="width: 21.8%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-slate-900 font-bold text-lg">活跃时间段热力分布</h3>
+<div class="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase">
+<span>低频</span>
+<div class="flex gap-1">
+<span class="size-3 rounded-sm bg-primary/5"></span>
+<span class="size-3 rounded-sm bg-primary/30"></span>
+<span class="size-3 rounded-sm bg-primary/60"></span>
+<span class="size-3 rounded-sm bg-primary"></span>
+</div>
+<span>高频</span>
+</div>
+</div>
+<div class="grid grid-cols-8 gap-2">
+<div></div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">00-06</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">06-09</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">09-12</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">12-14</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">14-18</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">18-21</div>
+<div class="text-[9px] font-bold text-slate-400 text-center uppercase py-1">21-00</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase flex items-center">周一</div>
+<div class="bg-primary/20 rounded-sm aspect-square"></div>
+<div class="bg-primary/40 rounded-sm aspect-square"></div>
+<div class="bg-primary/70 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/50 rounded-sm aspect-square"></div>
+<div class="bg-primary rounded-sm aspect-square shadow-sm border border-white/20"></div>
+<div class="bg-primary/40 rounded-sm aspect-square"></div>
+<div class="bg-primary/20 rounded-sm aspect-square"></div>
+<div class="text-[10px] font-bold text-slate-400 uppercase flex items-center">周二</div>
+<div class="bg-primary/10 rounded-sm aspect-square"></div>
+<div class="bg-primary/30 rounded-sm aspect-square"></div>
+<div class="bg-primary/80 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary rounded-sm aspect-square shadow-sm border border-white/20"></div>
+<div class="bg-primary/70 rounded-sm aspect-square"></div>
+<div class="bg-primary/50 rounded-sm aspect-square"></div>
+<div class="bg-primary/10 rounded-sm aspect-square"></div>
+<div class="text-[10px] font-bold text-slate-400 uppercase flex items-center">周三</div>
+<div class="bg-primary/10 rounded-sm aspect-square"></div>
+<div class="bg-primary/50 rounded-sm aspect-square"></div>
+<div class="bg-primary/80 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/90 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary rounded-sm aspect-square shadow-sm border border-white/20"></div>
+<div class="bg-primary/60 rounded-sm aspect-square"></div>
+<div class="bg-primary/20 rounded-sm aspect-square"></div>
+<div class="text-[10px] font-bold text-slate-400 uppercase flex items-center">周四</div>
+<div class="bg-primary/20 rounded-sm aspect-square"></div>
+<div class="bg-primary/40 rounded-sm aspect-square"></div>
+<div class="bg-primary/60 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/80 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/70 rounded-sm aspect-square"></div>
+<div class="bg-primary/40 rounded-sm aspect-square"></div>
+<div class="bg-primary/10 rounded-sm aspect-square"></div>
+<div class="text-[10px] font-bold text-slate-400 uppercase flex items-center">周五</div>
+<div class="bg-primary/30 rounded-sm aspect-square"></div>
+<div class="bg-primary/60 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary rounded-sm aspect-square shadow-sm border border-white/20"></div>
+<div class="bg-primary rounded-sm aspect-square shadow-sm border border-white/20"></div>
+<div class="bg-primary/90 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/80 rounded-sm aspect-square shadow-sm"></div>
+<div class="bg-primary/40 rounded-sm aspect-square"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-slate-900 font-bold text-lg">热点治理民情分析</h3>
+<button class="text-primary text-xs font-bold hover:bg-primary/5 px-2 py-1 rounded transition-colors">查看全部</button>
+</div>
+<div class="grid grid-cols-3 grid-rows-2 gap-3 h-[200px]">
+<div class="col-span-2 bg-sky-50 rounded-lg p-4 flex flex-col justify-between border border-sky-100 group hover:border-sky-300 transition-colors cursor-pointer">
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest">交通管理</p>
+<div>
+<p class="text-2xl font-black text-slate-900">4,120</p>
+<p class="text-[10px] text-slate-500 font-medium mt-1">昨日环比 +8.4%</p>
+</div>
+</div>
+<div class="bg-emerald-50 rounded-lg p-4 flex flex-col justify-between border border-emerald-100 group hover:border-emerald-300 transition-colors cursor-pointer">
+<p class="text-[10px] font-bold text-secondary uppercase tracking-widest">噪音扰民</p>
+<p class="text-xl font-black text-slate-900">1,842</p>
+</div>
+<div class="bg-amber-50 rounded-lg p-4 flex flex-col justify-between border border-amber-100 group hover:border-amber-300 transition-colors cursor-pointer">
+<p class="text-[10px] font-bold text-warning uppercase tracking-widest">治安隐患</p>
+<p class="text-xl font-black text-slate-900">930</p>
+</div>
+<div class="bg-indigo-50 rounded-lg p-4 flex flex-col justify-between border border-indigo-100 group hover:border-indigo-300 transition-colors cursor-pointer">
+<p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">公共停车</p>
+<p class="text-xl font-black text-slate-900">722</p>
+</div>
+<div class="bg-slate-50 rounded-lg p-4 flex flex-col justify-center items-center text-center border border-slate-100">
+<p class="text-[10px] font-bold text-slate-400 uppercase">其他事项</p>
+<p class="text-xs font-bold text-slate-600 mt-1">+12 类别</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-8 pb-12 gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500"></span>
+<span class="text-xs font-semibold text-slate-500">系统状态: 运行正常</span>
+</div>
+<div class="w-[1px] h-4 bg-slate-200"></div>
+<p class="text-xs text-slate-500">数据最后同步: <span class="font-bold text-slate-700">14:02:45</span></p>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-bold text-slate-400 hover:text-primary transition-colors" href="#">隐私权政策</a>
+<a class="text-xs font-bold text-slate-400 hover:text-primary transition-colors" href="#">审计日志</a>
+<a class="text-xs font-bold text-slate-400 hover:text-primary transition-colors" href="#">技术支持</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
